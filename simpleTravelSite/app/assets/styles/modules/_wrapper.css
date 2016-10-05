@@ -33,7 +33,7 @@
       padding-right: 18px;
     }
   }
-
+  /* any wrapper nested in another wrapper should have no padding */
   .wrapper {
     padding-left: 0;
     padding-right: 0;
@@ -46,5 +46,4 @@
       margin-bottom: 3.875rem;
     }
   }
-
 }

@@ -1,7 +1,7 @@
 module.exports = {
   entry: {
-    App: "./app/assets/scripts/App.js",
-    Vendor: "./app/assets/scripts/Vendor.js"
+    app: "./app/assets/scripts/app.js",
+    vendor: "./app/assets/scripts/vendor.js"
   },
   output: {
     path: "./app/temp/scripts",
@@ -14,6 +14,7 @@ module.exports = {
         query: {
           presets: ['es2015']
         },
+        /* this means that we are telling webpack that we only want this babel loader or plugin to be applied to JS and nothing else. The fewer files webpack has to apply the babel loader to, the faster the conversion process will go. */
         test: /\.js$/,
         exclude: /node_modules/
       }

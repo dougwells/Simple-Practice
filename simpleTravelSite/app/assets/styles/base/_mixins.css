@@ -20,6 +20,7 @@
   &::after {
     content: "";
     clear: both;
+    /* this is for extra browser support */
     display: table;
   }
 }

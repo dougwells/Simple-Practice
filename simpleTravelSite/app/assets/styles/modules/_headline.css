@@ -37,6 +37,7 @@
   }
 
   &--b-margin-small {
+    /* em relative to the font size itself. Likes this better for text margins. Good to use on headlines of different font sizes. Scales nicely. */
     margin-bottom: .5em;
   }
 

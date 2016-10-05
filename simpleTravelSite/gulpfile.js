@@ -4,4 +4,4 @@ require('./gulp/tasks/sprites');
 require('./gulp/tasks/scripts');
 require('./gulp/tasks/modernizr');
 require('./gulp/tasks/build');
-require('./gulp/tasks/deploy')
+require('./gulp/tasks/deploy');

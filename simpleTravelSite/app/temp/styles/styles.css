@@ -2,13 +2,15 @@
 
 /**
  * 1. Change the default font family in all browsers (opinionated).
- * 2. Prevent adjustments of font size after orientation changes in IE and iOS.
+ * 2. Correct the line height in all browsers.
+ * 3. Prevent adjustments of font size after orientation changes in IE and iOS.
  */
 
 html {
   font-family: sans-serif; /* 1 */
-  -ms-text-size-adjust: 100%; /* 2 */
-  -webkit-text-size-adjust: 100%; /* 2 */
+  line-height: 1.15; /* 2 */
+  -ms-text-size-adjust: 100%; /* 3 */
+  -webkit-text-size-adjust: 100%; /* 3 */
 }
 
 /**
@@ -256,6 +258,7 @@ hr {
 
 button,
 input,
+optgroup,
 select,
 textarea {
   font: inherit; /* 1 */
@@ -418,6 +421,11 @@ textarea {
   font: inherit; /* 2 */
 }
 
+* {
+  /* web browsers will honor declared with values despite added padding */
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
   color: #333;
@@ -428,10 +436,6 @@ img {
   height: auto;
 }
 
-* {
-  box-sizing: border-box;
-}
-
 a {
   color: #d59541;
 }
@@ -439,17 +443,16 @@ a {
 .large-hero {
   border-bottom: 10px solid #2f5572;
   position: relative;
-
 }
 
-.large-hero__image {
+.large-hero__image {/* because initially img was inline by default and that's why white space above border-bottom. Browser initally treats img as line of text. But by switching to block, telling browser that it should treat img almost like a div. */
   display: block;
 }
 
 .large-hero__text-content {
   padding-top: 88px;
   position: absolute;
-  top: 50%;
+  top: 50%;/* position vertically relative to itself */
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   left: 0;
@@ -467,8 +470,8 @@ a {
 .large-hero__title {
   font-weight: 300;
   color: #2f5572;
-  margin: 0;
   font-size: 2.4rem;
+  margin: 0;
 }
 
 @media (min-width: 530px) {
@@ -496,7 +499,7 @@ a {
   color: #FFF;
   font-size: 1.1rem;
   font-weight: 100;
-  text-shadow: 2px 2px 0 rgba(0, 0, 0, .1);
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
   max-width: 30rem;
   margin-left: auto;
   margin-right: auto;
@@ -510,16 +513,15 @@ a {
 }
 
 .btn {
-  background-color: #2f5572;
+  background: #2f5572;
   color: #FFF;
   text-decoration: none;
   padding: .75rem 1.2rem;
   display: inline-block;
-
 }
 
 .btn--orange {
-  background-color: #d59541;
+  background: #d59541;
 }
 
 .btn--large {
@@ -528,7 +530,7 @@ a {
 
 @media (min-width: 530px) {
 
-  .btn--large {
+  .btn {
     font-size: 1.25rem;
   }
 }
@@ -540,7 +542,6 @@ a {
   max-width: 1236px;
   margin-left: auto;
   margin-right: auto;
-
 }
 
 .wrapper--medium {
@@ -577,6 +578,8 @@ a {
   }
 }
 
+/* any wrapper nested in another wrapper should have no padding */
+
 .wrapper .wrapper {
   padding-left: 0;
   padding-right: 0;
@@ -595,7 +598,6 @@ a {
 
 .page-section {
   padding: 1.2rem 0;
-
 }
 
 @media (min-width: 800px) {
@@ -628,18 +630,18 @@ a {
 }
 
 .page-section--blue {
-  background-color: #2f5572;
+  background: #2f5572;
   color: #FFF;
 }
 
 .page-section--testimonials {
-  background-color: #e0e6ef;
+  background: #e0e6ef;
 }
 
 @media (min-width: 1010px) {
 
   .page-section--testimonials.lazyloaded {
-    background: url('/assets/images/testimonials-bg.jpg') top center no-repeat;
+    background: url('../../assets/images/testimonials-bg.jpg') top center no-repeat;
     background-size: cover;
   }
 }
@@ -690,7 +692,7 @@ a {
   font-weight: 400;
 }
 
-.headline--b-margin-small {
+.headline--b-margin-small {/* em relative to the font size itself. Likes this better for text margins. Good to use on headlines of different font sizes. Scales nicely. */
   margin-bottom: .5em;
 }
 
@@ -704,7 +706,7 @@ a {
 
 .row::after {
   content: "";
-  clear: both;
+  clear: both;/* this is for extra browser support */
   display: table;
 }
 
@@ -723,6 +725,8 @@ a {
 .row--gutters-small {
   margin-right: -45px;
 }
+
+/* > to select all the direct children that use a tag of div */
 
 .row--gutters > div {
   padding-right: 65px;
@@ -806,7 +810,6 @@ a {
 
   .flexbox .row--equal-height-at-medium {
     display: -webkit-box;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
   }
@@ -815,7 +818,6 @@ a {
 .flexbox .row--equal-height-at-medium > div {
   float: none;
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
@@ -824,7 +826,6 @@ a {
 
   .flexbox .row--equal-height-at-large {
     display: -webkit-box;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
   }
@@ -833,7 +834,6 @@ a {
 .flexbox .row--equal-height-at-large > div {
   float: none;
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
@@ -859,7 +859,6 @@ a {
   font-size: 2.55rem;
   font-weight: 300;
   text-align: center;
-
 }
 
 @media (min-width: 530px) {
@@ -944,7 +943,8 @@ a {
 }
 
 .testimonial {
-  background-color: rgba(255, 255, 255, .8);
+  background-color: rgba(255, 255, 255, 0.8);
+  /* giving 1px of bottom padding gives bottom margin of content something to push up against. */
   padding: 0 18px 1px 18px;
   margin-bottom: 98px;
 }
@@ -969,7 +969,7 @@ a {
   margin: 0 auto -80px auto;
   position: relative;
   top: -80px;
-  border: 6px solid rgba(255, 255, 255, .8);
+  border: 6px solid rgba(255, 255, 255, 0.8);
 }
 
 .testimonial__title {
@@ -984,20 +984,19 @@ a {
   color: #d59541;
   text-align: center;
   font-weight: 400;
-  font-size: 0.9375rem;
-  margin: .25rem 0 1rem 0;
+  font-size: .9375rem;
+  margin: 0.25rem 0 1rem 0;
 }
 
-/* Do not edit modules/_sprite directly as it is generated automatically by Gulp.
-Instead edit gulp/templates/sprite */
+/* Do not edit modules/_sprite directly as it is generated automatically by Gulp. Instead, edit gulp/templates/sprite */
 
 .icon {
-      background-image: url('/assets/images/sprites/sprite-8eb89099.svg');
-    }
+    background-image: url('../../assets/images/sprites/sprite-8eb89099.svg');
+  }
 
 .no-svg .icon {
-      background-image: url('/assets/images/sprites/sprite-8eb89099.png');
-    }
+    background-image: url('../../assets/images/sprites/sprite-8eb89099.png');
+  }
 
 .icon--clear-view-escapes {
     width: 144.4px;
@@ -1072,9 +1071,9 @@ Instead edit gulp/templates/sprite */
   }
 
 .site-footer {
-  background-color: #2f5572;
+  background: #2f5572;
   color: #FFF;
-  padding: .5rem 0;
+  padding: 0.5rem 0;
   text-align: center;
 }
 
@@ -1098,23 +1097,23 @@ Instead edit gulp/templates/sprite */
   position: absolute;
   width: 100%;
   z-index: 2;
-  -webkit-transition: background-color .3s ease-out;
-  transition: background-color .3s ease-out;
+  -webkit-transition: background .3s ease-out;
+  transition: background .3s ease-out;
 }
 
 .site-header--is-expanded {
-  background-color: rgba(47,85,114, .55);
+  background: rgba(47,85,114, 0.55);
 }
 
 @media (min-width: 800px) {
 
   .site-header {
     position: fixed;
-    background-color: rgba(47,85,114, .3);
+    background: rgba(47,85,114, 0.3);
   }
 
   .site-header--dark {
-    background-color: rgba(23, 51, 72, .85);
+    background: rgba(23, 51, 72, .85);
   }
 }
 
@@ -1129,15 +1128,15 @@ Instead edit gulp/templates/sprite */
   position: absolute;
   top: 0;
   left: 50%;
-  -webkit-transform: translateX(-50%) scale(.8);
-          transform: translateX(-50%) scale(.8);
+  -webkit-transform: translateX(-50%) scale(0.8);
+          transform: translateX(-50%) scale(0.8);
   -webkit-transition: -webkit-transform .3s ease-out;
   transition: -webkit-transform .3s ease-out;
   transition: transform .3s ease-out;
   transition: transform .3s ease-out, -webkit-transform .3s ease-out;
   -webkit-transform-origin: 50% 0;
           transform-origin: 50% 0;
-  background-color: #2f5572;
+  background: #2f5572;
   padding: 25px 36px;
 }
 
@@ -1146,12 +1145,12 @@ Instead edit gulp/templates/sprite */
   .site-header__logo {
     left: auto;
     -webkit-transform: translateX(0);
-            transform: translateX(0);
+            transform: translateX(0);/* & refers to logo */
   }
 
   .site-header--dark .site-header__logo {
-    -webkit-transform: scale(.56);
-            transform: scale(.56);
+    -webkit-transform: scale(0.57);
+            transform: scale(0.57);
   }
 }
 
@@ -1169,13 +1168,13 @@ Instead edit gulp/templates/sprite */
 }
 
 .site-header__menu-icon::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 20px;
   height: 3px;
-  background-color: #FFF;
+  background: #FFF;
   -webkit-transform-origin: 0 0;
           transform-origin: 0 0;
   -webkit-transition: -webkit-transform .3s ease-out;
@@ -1190,7 +1189,7 @@ Instead edit gulp/templates/sprite */
   left: 0;
   width: 20px;
   height: 3px;
-  background-color: #FFF;
+  background: #FFF;
   -webkit-transition: all .3s ease-out;
   transition: all .3s ease-out;
   -webkit-transform-origin: 0 50%;
@@ -1198,13 +1197,13 @@ Instead edit gulp/templates/sprite */
 }
 
 .site-header__menu-icon::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: 0;
   left: 0;
   width: 20px;
   height: 3px;
-  background-color: #FFF;
+  background: #FFF;
   -webkit-transform-origin: 0 100%;
           transform-origin: 0 100%;
   -webkit-transition: -webkit-transform .3s ease-out;
@@ -1291,7 +1290,7 @@ Instead edit gulp/templates/sprite */
 
 .primary-nav ul::after {
   content: "";
-  clear: both;
+  clear: both;/* this is for extra browser support */
   display: table;
 }
 
@@ -1327,16 +1326,16 @@ Instead edit gulp/templates/sprite */
   text-decoration: none;
   display: block;
   padding: 5px 8px;
-  font-size: .8rem;
-  background-color: rgba(47,85,114, .5);
+  font-size: 0.8rem;
+  background: rgba(47,85,114, 0.5);
 }
 
 @media (min-width: 800px) {
 
   .primary-nav a {
     font-size: 1rem;
-    padding: 12px 0;
-    background-color: transparent;
+    padding: 15px 0;
+    background: transparent;
   }
 
   .primary-nav a.is-current-link {
@@ -1361,7 +1360,7 @@ Instead edit gulp/templates/sprite */
 .modal {
   position: fixed;
   z-index: 5;
-  background-color: rgba(255, 255, 255, .94);
+  background: rgba(255, 255, 255, 0.94);
   top: 0;
   bottom: 0;
   left: 0;
@@ -1382,7 +1381,7 @@ Instead edit gulp/templates/sprite */
 }
 
 .modal__inner {
-  position: absolute;
+  position: absolute;/* elements that are positioned absolutely try to shrink wrap their size, but we want this element to keep its full width. */
   width: 100%;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -1418,7 +1417,7 @@ Instead edit gulp/templates/sprite */
 }
 
 .social-icons__icon {
-  background-color: #d59541;
+  background: #d59541;/* this way all social media icons will sit on single line, but inline-block will let us give them a custom height if needed. */
   display: inline-block;
   margin: 0 5px 5px 5px;
   width: 33%;

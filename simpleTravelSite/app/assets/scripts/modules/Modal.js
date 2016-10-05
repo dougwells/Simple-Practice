@@ -2,9 +2,9 @@ import $ from 'jquery';
 
 class Modal {
   constructor() {
-    this.openModalButton = $(".open-modal");
-    this.modal = $(".modal");
-    this.closeModalButton = $(".modal__close");
+    this.openModalButton = $('.open-modal');
+    this.modal = $('.modal');
+    this.closeModalButton = $('.modal__close');
     this.events();
   }
 
@@ -15,7 +15,7 @@ class Modal {
     // clicking the x close modal button
     this.closeModalButton.click(this.closeModal.bind(this));
 
-    // pushes any key
+    // pushes the any key
     $(document).keyup(this.keyPressHandler.bind(this));
   }
 
@@ -26,12 +26,13 @@ class Modal {
   }
 
   openModal() {
-    this.modal.addClass("modal--is-visible");
+    this.modal.addClass('modal--is-visible');
+    /* include this because the header Get in Touch button is a link element. If you click a link element that has an href value of #, the browser automatically scrolls to the top of the page. Return false will prevent that default behavior. */
     return false;
   }
 
   closeModal() {
-    this.modal.removeClass("modal--is-visible");
+    this.modal.removeClass('modal--is-visible');
   }
 }
 

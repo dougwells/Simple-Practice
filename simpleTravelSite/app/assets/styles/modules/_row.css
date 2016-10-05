@@ -17,7 +17,7 @@
   &--gutters-small {
     margin-right: -45px;
   }
-
+  /* > to select all the direct children that use a tag of div */
   &--gutters > div {
     padding-right: 65px;
   }
@@ -62,7 +62,6 @@
     &__medium-8--smaller {
       width: 63%;
     }
-
   }
 
   @mixin atLarge {
@@ -93,9 +92,8 @@
     &__large-8--smaller {
       width: 63%;
     }
-
   }
-  
+
   /* Begin Equal Height Rules */
   .flexbox &--equal-height-at-medium {
     @mixin atMedium {
@@ -106,7 +104,6 @@
       float: none;
       display: flex;
     }
-
   }
 
   .flexbox &--equal-height-at-large {
@@ -118,7 +115,5 @@
       float: none;
       display: flex;
     }
-
   }
-
 }

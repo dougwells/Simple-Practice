@@ -2,7 +2,8 @@
   text-align: center;
 
   &__icon {
-    background-color: $mainOrange;
+    background: $mainOrange;
+    /* this way all social media icons will sit on single line, but inline-block will let us give them a custom height if needed. */
     display: inline-block;
     margin: 0 5px 5px 5px;
     width: 33%;
